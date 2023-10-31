@@ -22,21 +22,25 @@
 <section class="card-container">
   {% for finch in finches %}
     <div class="card">
-      <div class="card-content">
-        <div class="card-img-container">
-          <img 
-            src="{% static 'images/sk8r-boi-cat.svg' %}" 
-            alt="A skater boy cat"
-          >
+      {% comment %} Add this line {% endcomment %}
+      <a href="/finches/{{ finch.id }}">
+        <div class="card-content">
+          <div class="card-img-container">
+            <img 
+              src="{% static 'images/sk8r-boi-cat.svg' %}" 
+              alt="A skater boy finch"
+            >
+          </div>
+          <h2 class="card-title">{{ finch.name }}</h2>
+          {% if finch.age > 0 %}
+            <p>A {{ finch.age }} year old {{ finch.breed }}</p>
+          {% else %}
+            <p>A {{ finch.breed }} pterodactyl</p>
+          {% endif %}
+          <p><small>{{ finch.description }}</small></p>
         </div>
-        <h2 class="card-title">{{ finch.name }}</h2>
-        {% if finch.age > 0 %}
-          <p>A {{ finch.age }} year old {{ finch.breed }}</p>
-        {% else %}
-          <p>A {{ finch.breed }} kitten.</p>
-        {% endif %}
-        <p><small>{{ finch.description }}</small></p>
-      </div>
+      {% comment %} And this line {% endcomment %}
+      </a>
     </div>
   {% endfor %}
 </section>
