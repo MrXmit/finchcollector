@@ -35,10 +35,9 @@
     </div>
     <nav>
       <ul>
-         <!-- new markup below -->
-         <li><a href="/finches">All Finches</a></li>
-         <!-- existing markup -->
-         <li><a href="/about">About</a></li>
+        <li><a href="{% url 'finch-index' %}">All Finches</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'finch-create' %}">Add a Finch</a></li>
       </ul>
     </nav>
   </header>

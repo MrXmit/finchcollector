@@ -26,6 +26,12 @@
       <h2>A {{ finch.breed }} pterodoctyl .</h2>
     {% endif %}
     <p>{{ finch.description }}</p>
+
+    <div class="cat-actions">
+      <a href="{% url 'finch-update' finch.id %}" class="btn warn">Edit</a>
+      <a href="{% url 'finch-delete' finch.id %}" class="btn danger">Delete</a>
+    </div>
+
   </div>
 </section>
 
