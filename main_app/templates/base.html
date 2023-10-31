@@ -1,0 +1,50 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% comment %} <link
+    rel="shortcut icon"
+    type="image/png"
+    href="https://images.app.goo.gl/vuj4pgx6bFJe3RzA7"
+  > {% endcomment %}
+  <link
+  rel="shortcut icon"
+  type="image/png"
+  href="https://cdn.discordapp.com/attachments/791636167304151071/1168869314259062886/Screenshot_2023-10-20_123700.png?ex=65535561&is=6540e061&hm=6080041cf20eb69af0ddc30f2754c72e868fe29ecff24b2298375c278d586bee&"
+>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+  <title>Finch Collector</title>
+
+  {% block head %}
+  {% endblock %}
+</head>
+<body>
+  <header>
+    <div class="header-logo-container">
+      <a href="/">
+        <img 
+          src="{% static 'images/header-logo.svg' %}"
+          alt="The Finch Collector Logo"
+        >
+      </a>
+    </div>
+    <nav>
+      <ul>
+         <!-- new markup below -->
+         <li><a href="/finch">All Finch</a></li>
+         <!-- existing markup -->
+         <li><a href="/about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+</body>
+</html>
