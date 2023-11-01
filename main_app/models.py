@@ -1,4 +1,6 @@
 from django.db import models
+from datetime import date
+from django.urls import reverse
 
 MEALS = (
   ('B', 'Breakfast'),
@@ -11,9 +13,12 @@ class Finch(models.Model):
   breed = models.CharField(max_length=100)
   description = models.TextField(max_length=250)
   age = models.IntegerField()
+  # toys = models.ManyToManyField(Toy)
 
   def __str__(self):
     return self.name
+  def fed_for_today(self):
+    return self.feeding_set.filter(date=date.today()).count() >= len(MEALS)
   
 class Feeding(models.Model):
   date = models.DateField('Feeding Date')
@@ -22,12 +27,20 @@ class Feeding(models.Model):
     choices=MEALS,
     default=MEALS[0][0]
   )
-  # Create a finch_id column in the database
   finch = models.ForeignKey(Finch, on_delete=models.CASCADE)
 
   def __str__(self):
-    # Nice method for obtaining the friendly value of a Field.choice
     return f"{self.get_meal_display()} on {self.date}"
   
   class Meta:
     ordering = ['-date']
+
+class Toy(models.Model):
+  name = models.CharField(max_length=50)
+  color = models.CharField(max_length=20)
+
+  def __str__(self):
+    return self.name
+
+  def get_absolute_url(self):
+    return reverse('toy-detail', kwargs={'pk': self.id})
