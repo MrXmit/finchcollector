@@ -2,7 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('', views.Home.as_view(), name='home'),
+    path('accounts/signup/', views.signup, name='signup'),
     path('about/', views.about, name='about'),
     path('finches/', views.finch_index, name='finch-index'),
     path('finches/<int:finch_id>/', views.finch_detail, name='finch-detail'),
