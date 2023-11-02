@@ -104,17 +104,17 @@
   </section>
 
 
-  {% comment %} <section class="toys">
+  <section class="toys">
     <div class="subsection-title">
       <h2>Toys</h2>
       <img src="{% static 'images/string.svg' %}" alt="A ball of string" />
       <img src="{% static 'images/mouse.svg' %}" alt="A mouse" />
       <img src="{% static 'images/fish.svg' %}" alt="A fishy toy" />
     </div>
-    <h3>{{ cat.name }}'s Toys</h3>
+    <h3>{{ finch.name }}'s Toys</h3>
     <div class="subsection-content">
-      {% if cat.toys.count %}
-        {% for toy in cat.toys.all %}
+      {% if finch.toys.count %}
+        {% for toy in finch.toys.all %}
           <div class="toy-container">
             <div 
               class="color-block"
@@ -126,7 +126,7 @@
           </div>
         {% endfor %}
       {% else %}
-        <p class="no-toys">{{cat.name}} doesn't have any toys 😞</p>
+        <p class="no-toys">{{finch.name}} doesn't have any toys 😞</p>
       {% endif %}
     </div>
     <h3>Available Toys</h3>
@@ -141,7 +141,7 @@
             <a href="{% url 'toy-detail' toy.id %}">
               <p>A {{ toy.color }} {{ toy.name }}</p>
             </a>
-            <form action="{% url "assoc-toy" cat.id toy.id %}" method="post">
+            <form action="{% url "assoc-toy" finch.id toy.id %}" method="post">
               {% csrf_token %}
               <button type="submit" class="btn submit">Give toy</button>
             </form>
@@ -149,11 +149,11 @@
         {% endfor %}
         {% else %}
           <p class="all-toys">
-            {{cat.name}} already has all the available toys 🥳
+            {{finch.name}} already has all the available toys 🥳
           </p>
       {% endif %}
     </div>
-  </section> {% endcomment %}
+  </section>
 </div>
 
 

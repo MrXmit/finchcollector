@@ -59,5 +59,11 @@ def finch_index(request):
 
 def finch_detail(request, finch_id):
   finch = Finch.objects.get(id=finch_id)
+  toys_finch_doesnt_have = Toy.objects.exclude(id__in = finch.toys.all().values_list('id'))
   feeding_form = FeedingForm()
-  return render(request, 'finches/detail.html', { 'finch': finch, 'feeding_form': feeding_form})
+  return render(request, 'finches/detail.html', { 'finch': finch, 'feeding_form': feeding_form, 'toys': toys_finch_doesnt_have})
+
+def assoc_toy(request, finch_id, toy_id):
+  # Note that you can pass a toy's id instead of the whole object
+  Finch.objects.get(id=finch_id).toys.add(toy_id)
+  return redirect('finch-detail', finch_id=finch_id)
