@@ -1,8 +1,9 @@
-from django.urls import path
+from django.urls import include, path
 from . import views
 
 urlpatterns = [
     path('', views.Home.as_view(), name='home'),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', views.signup, name='signup'),
     path('about/', views.about, name='about'),
     path('finches/', views.finch_index, name='finch-index'),
